@@ -1,0 +1,31 @@
+# .cnb.yml
+$:
+  vscode:
+    - runner:
+        cpus: 16
+      services:
+        - docker
+        - vscode
+      docker:
+        image:
+          name: docker.cnb.cool/xuanzhi33/dev-env:latest
+          # 使用 CI 构建时默认注入的环境变量
+          dockerUser: $CNB_TOKEN_USER_NAME
+          dockerPassword: $CNB_TOKEN
+      stages:
+        - name: setup
+          script: ls
+
+main:
+  push:
+    - name: Sync to Github
+      imports:
+        - https://cnb.cool/xuanzhi33/github-token/-/blob/main/cherry.yml
+      stages:
+        - name: sync to github
+          image: tencentcom/git-sync
+          settings:
+            target_url: https://github.com/xuanzhi33/cherry-studio-app.git
+            auth_type: https
+            username: ${GIT_USERNAME}
+            password: ${GIT_ACCESS_TOKEN}
