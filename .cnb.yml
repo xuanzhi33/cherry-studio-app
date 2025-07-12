@@ -12,6 +12,8 @@ $:
           # 使用 CI 构建时默认注入的环境变量
           dockerUser: $CNB_TOKEN_USER_NAME
           dockerPassword: $CNB_TOKEN
+      imports:
+        - https://cnb.cool/xuanzhi33/expo-env/-/blob/main/cherry.yml
       env:
         CNB_WELCOME_CMD: corepack enable yarn && yarn
       stages:
