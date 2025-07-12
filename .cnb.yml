@@ -15,7 +15,7 @@ $:
       imports:
         - https://cnb.cool/xuanzhi33/expo-env/-/blob/main/cherry.yml
       env:
-        CNB_WELCOME_CMD: corepack enable yarn && yarn
+        CNB_WELCOME_CMD: corepack enable yarn && yarn && echo "EXPO_PACKAGER_PROXY_URL=" >> .env && CI=false
       stages:
         - name: setup
           script: ls
